@@ -20,7 +20,6 @@ config = read_yaml("./config.yaml")
 vocab = pd.read_excel(r"..\Q&A_System\test\码表.xlsx")
 
 st.set_page_config(page_title="Welcome to Fongwell🤖", layout="wide")
-st.session_state["OPENAI_API_KEY"] = "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"
 embeddings = HuggingFaceEmbeddings(model_name='moka-ai/m3e-base')
 
 
