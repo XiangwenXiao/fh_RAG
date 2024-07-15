@@ -94,15 +94,6 @@ with st.container():
         with st.chat_message("user"):
             st.markdown(prompt)
         # qa
-        # chat = ConversationalRetrievalChain.from_llm(ChatOpenAI(temperature=temperature,
-        #                                                         openai_api_key=st.session_state["OPENAI_API_KEY"],
-        #                                                         model_name='gpt-3.5-turbo-0125'),
-        #                                            docsearch.as_retriever(search_kwargs={"k": top_p,
-        #                                                                                 }),
-        #                                            memory=memory,
-        #                                            return_source_documents=True,
-        #                                            combine_docs_chain_kwargs={"prompt": PROMPT}
-        #                                              )
         chat = ConversationalRetrievalChain.from_llm(ChatOllama(model="llama3"),
                                                    docsearch.as_retriever(search_kwargs={"k": top_p,
                                                                                         }),
