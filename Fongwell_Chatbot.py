@@ -15,7 +15,7 @@ import re
 import pandas as pd
 from utils import read_yaml
 
-config = read_yaml("./config.yaml")
+config = read_yaml("config.yaml")
 
 vocab = pd.read_excel(r"码表.xlsx")
 
@@ -49,7 +49,7 @@ st.session_state["params"]["temperature"] = temperature
 similarity_score_threshold = st.sidebar.slider("**Similarity Score Threshold Memory**",min_value= 0.0, max_value=1.0, step=0.1,value=0.8)
 st.session_state["params"]["similarity_score_threshold"] = similarity_score_threshold
 #向量库
-contents = os.listdir(r'.\vector_store')
+contents = os.listdir(r'vector_store')
 subfolders = [f for f in contents]
 vs = st.sidebar.selectbox('**Vector Strore**',subfolders)
 
@@ -76,7 +76,7 @@ memory = ConversationBufferWindowMemory(k=window_memory,
 if "messages" not in st.session_state:
     st.session_state["messages"] = []
 
-vector_store_path = os.path.join('./vector_store',vs)
+vector_store_path = os.path.join('vector_store',vs)
 with st.container():
     st.header("Chat with FongWell😃")
     docsearch = FAISS.load_local(vector_store_path,embeddings=embeddings,allow_dangerous_deserialization=True)
