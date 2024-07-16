@@ -17,7 +17,8 @@ from utils import read_yaml
 
 config = read_yaml("./config.yaml")
 
-vocab = pd.read_excel(r"..\Q&A_System\test\码表.xlsx")
+vocab = pd.read_excel(r"码表.xlsx")
+
 
 st.set_page_config(page_title="Welcome to Fongwell🤖", layout="wide")
 embeddings = HuggingFaceEmbeddings(model_name='moka-ai/m3e-base')
@@ -103,7 +104,6 @@ with st.container():
                                                      )
 
         res = chat({"question": prompt})
-        print(res)
         ai_message = res['answer']
         source = res['source_documents']
 
@@ -134,10 +134,6 @@ with st.container():
             extracted_text = match.group(1)
             extracted_text = extracted_text[1:]
             source_extracted_texts.append(extracted_text)
-
-        print(content_extracted_texts)
-        print('\n')
-        print(source_extracted_texts)
 
         st.session_state["messages"].append(ai_message)
         with st.chat_message("assistant"):
