@@ -1,6 +1,6 @@
 import re
 import pandas as pd
-vocab = pd.read_excel(r"..\Q&A_System\test\码表.xlsx")
+vocab = pd.read_excel(r".\码表.xlsx")
 import streamlit as st
 
 
@@ -21,7 +21,7 @@ def answer_format(source):
         extracted_text = match.group(1)
         content_extracted_texts.append(extracted_text)
 
-        # 来源公司项
+    # 来源公司项
     source_start_maker = ''', metadata={'source': 'D:\\PycharmFile\\test\\save_files\\'''
     source_end_maker = ".txt'})"
 
@@ -35,15 +35,10 @@ def answer_format(source):
         extracted_text = extracted_text[1:]
         source_extracted_texts.append(extracted_text)
 
-        # 打印
+    # 打印
 
     for i in range(len(content_extracted_texts)):
 
             f"\033[1m来源{i + 1}\033[0m", "\n\n",
             content_extracted_texts[i][1:-1].replace("\\n", '\n'), "\n\n",
             f"\033[1mSource:{vocab.loc[vocab['缩写'] == source_extracted_texts[i], '公司名称'].values[0]}\033[0m","\n\n"
-
-
-
-
-
